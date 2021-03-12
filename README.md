@@ -12,12 +12,19 @@ Installation
 ------------
 
 1. Download a copy for your platform from the releases section here.
-2. Put it somewhere on your PATH
-   * Linux - I recommend `/usr/local/bin/`
-   * Windows - I recommend creating a little `tools` folder in your home
-     folder (e.g. `C:\Users\YourName\tools\`) and then updating your PATH to
-     include that folder. Then you can put all your own scripts and tools here.
-3. Open a shell, `cd` to a project, and type `clean`.
+
+2. Rename the downloaded file to `clean` or `clean.exe`.
+
+3. Put it somewhere on your PATH.
+
+   * Linux/mac: I recommend `/usr/local/bin/`. Then mark as executable with
+     `chmod +x clean`
+
+   * Windows: I recommend creating a `tools` folder in your home folder (e.g.
+     `C:\Users\YourName\tools\`) and then updating your PATH to include that
+     folder. Then you can put all your own scripts and tools here.
+
+4. Open a shell, `cd` to a project, and type `clean`.
 
 Run `clean -help` to see full options and usage instructions.
 
