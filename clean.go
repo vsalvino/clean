@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "1.0"
+const Version = "1.1"
 
 const HelpText = `NAME
   clean - The quick little project cleaner.
@@ -59,13 +59,17 @@ func main() {
 	// If no flags provided, use all.
 	c_a = !(*c_cc || *c_ed || *c_py)
 
-	// If dir is not provided, get working directory.
+	// Process provided directory.
 	if dir == "" {
+		// If dir is not provided, get working directory.
 		dir, err = os.Getwd()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
+	} else {
+		// Get absolute path of what the user provided.
+		dir, err = filepath.Abs(dir)
+	}
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
 
 	// Walk the path and clean files.
@@ -118,7 +122,10 @@ func main() {
 				if err != nil {
 					fmt.Printf("  Error: %s\n", err)
 				}
-				return filepath.SkipDir
+				// If we just deleted a directory, do not try to walk it.
+				if d.IsDir() {
+					return filepath.SkipDir
+				}
 			}
 
 			// Do not walk dirs we don't care about.
