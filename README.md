@@ -11,7 +11,7 @@ node_modules, and any hidden dot directories.
 Installation
 ------------
 
-1. Download a copy for your platform from the releases section here.
+1. [Download a copy for your platform](https://github.com/vsalvino/clean/releases).
 
 2. Rename the downloaded file to `clean` or `clean.exe`.
 
