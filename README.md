@@ -8,6 +8,7 @@ cruft, etc. from your projects. It runs in a split second as it will completely
 skip over programming language environments such as Python virtual envs,
 node_modules, and any hidden dot directories.
 
+
 Installation
 ------------
 
@@ -28,12 +29,11 @@ Installation
 
 Run `clean -help` to see full options and usage instructions.
 
+
 What does it clean?
 -------------------
 
-* Python - completely removes `__pycache__` directories and their contents.
-* Editors - removes Emacs/Vim backups and autosaves.
-* Compiled output - C, C++, Go, etc.
+* Compiled output (C, C++, Go, etc.) - removes:
   * `.app`
   * `.dll`
   * `.dylib`
@@ -46,6 +46,13 @@ What does it clean?
   * `.pdb`
   * `.so`
   * `.test`
+
+* Python - removes:
+  * `__pycache__` directories and their contents.
+  * `.pyc` files.
+
+* Editors - removes Emacs/Vim backups and autosaves.
+
 
 Why not use `find`?
 -------------------
@@ -61,11 +68,13 @@ unweidly amount of options, arguments, and regular expressions which makes it
 difficult to share with other team members (everyone having to pass around their
 shell aliases and scripts).
 
+
 Inspiration
 -----------
 
 This is inspired by the `pyclean` command that ships with Debian, which is used
 to delete `.pyc` files before uploading/shipping python code.
+
 
 Contributing
 ------------

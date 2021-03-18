@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "1.1"
+const Version = "1.2"
 
 const HelpText = `NAME
   clean - The quick little project cleaner.
@@ -86,7 +86,8 @@ func main() {
 			var delete bool = false
 			if *c_py || c_a {
 				// Python.
-				if n == "__pycache__" {
+				if n == "__pycache__" ||
+					strings.HasSuffix(n, ".pyc") {
 					delete = true
 				}
 			}
