@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "1.2"
+const Version = "1.3"
 
 const HelpText = `NAME
   clean - The quick little project cleaner.
@@ -44,6 +44,8 @@ func main() {
 		"ed", false, "Clean editor cruft (Emacs backups, etc.)")
 	var c_py = flag.Bool(
 		"py", false, "Clean Python __pycache__ directories.")
+	var c_x = flag.String(
+		"x", "", "Clean files ending with provided extension (e.g. \".elc\").")
 	var ver = flag.Bool(
 		"version", false, "Print version and exit.")
 	flag.Parse()
@@ -57,7 +59,7 @@ func main() {
 	}
 
 	// If no flags provided, use all.
-	c_a = !(*c_cc || *c_ed || *c_py)
+	c_a = !(*c_cc || *c_ed || *c_py || *c_x != "")
 
 	// Process provided directory.
 	if dir == "" {
@@ -115,6 +117,11 @@ func main() {
 					delete = true
 				}
 			}
+			if *c_x != "" {
+				if strings.HasSuffix(n, *c_x) {
+					delete = true
+				}
+			}
 
 			// Remove the file if so.
 			if delete {
@@ -129,8 +136,9 @@ func main() {
 				}
 			}
 
-			// Do not walk dirs we don't care about.
-			if d.IsDir() {
+			// Do not walk dirs we don't care about, unless it was the provided
+			// root dir.
+			if d.IsDir() && path != dir {
 				if strings.HasPrefix(n, ".") ||
 					n == "env" ||
 					n == "venv" ||

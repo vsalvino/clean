@@ -53,6 +53,8 @@ What does it clean?
 
 * Editors - removes Emacs/Vim backups and autosaves.
 
+* Custom - specify a string to remove all files ending in that extension.
+
 
 Why not use `find`?
 -------------------
