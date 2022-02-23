@@ -89,6 +89,7 @@ func main() {
 			if *c_py || c_a {
 				// Python.
 				if n == "__pycache__" ||
+					n == ".mypy_cache" ||
 					strings.HasSuffix(n, ".pyc") {
 					delete = true
 				}
