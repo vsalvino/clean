@@ -49,6 +49,7 @@ What does it clean?
 
 * Python - removes:
   * `__pycache__` directories and their contents.
+  * `.mypy_cache` directories and their contents.
   * `.pyc` files.
 
 * Editors - removes Emacs/Vim backups and autosaves.
